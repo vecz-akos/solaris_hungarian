@@ -63,7 +63,7 @@ class WordController {
                 const filename = this.word.wordclass.filename
                 const rotation = 0
                 const scale = 50
-                WordController.getMedia(filename, "/media/classes/").then((img) => {
+                WordController.getMedia(filename, "./media/classes/").then((img) => {
                     this.centerImg = draw.image(img)
                     this.centerImg.width(scale).height(scale).cx(this.word.position[0]).cy(this.word.position[1])//.rotate(rotation)
                 })
@@ -145,7 +145,7 @@ class WordController {
         }
     }
 
-    static async getMedia(file, path="/media/letters/") {
+    static async getMedia(file, path="./media/letters/") {
         if (!(file in mediaCache)) {
             const response = await fetch(`${path}${file}`)
             let media
@@ -168,7 +168,7 @@ class WordclassController {
     getFilePath(klassz) {
         const filename = Wordclass.getFilePath(klassz)
         if (filename !== "")
-            return `/media/classes/${filename}`
+            return `./media/classes/${filename}`
         return ""
     }
 }
