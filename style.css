@@ -1,0 +1,15 @@
+#panel {
+    width: 30%;
+    height: 100%;
+    background-color: #aaa;
+}
+
+#output {
+    width: 60vw;
+    height: 90vh;
+}
+
+#menu {
+    max-height: 90vh;
+    overflow-y: scroll;
+}
