@@ -67,7 +67,7 @@ class WordController {
         }
         if (isDelete) {
             this.base.removeLetter(cursorPos-(isDelete === "Backspace" ? 1 : 0))
-        } else if (!Letter.isLetter(addedLetter)) {
+        } else if (addedLetter.length > 1) {
             if (!addedLetter.startsWith("Arrow") && !addedLetter.startsWith("F"))
                 e.preventDefault()
         } else {
