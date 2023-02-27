@@ -1,8 +1,8 @@
 import Letter from "./letter.js"
-import { RingSpinners } from "./word.js"
+import { RingSpinner } from "./word.js"
 
 class Base {
-    constructor(base="", spinner=RingSpinners.random) {
+    constructor(base="", spinner=RingSpinner.Random) {
         this.spinner = spinner
         this.letters = []
         this.createLetterString(base)
@@ -48,7 +48,7 @@ class Base {
         if (typeof(index) === "undefined") index = this.letters.length
         if (index < 0) index = (index % this.letters.length) + this.letters.length
         if (Letter.isLetter(letter))
-            this.letters.splice(index, 0, new Letter(letter, index+1, this.spinner(index+1)))
+            this.letters.splice(index, 0, new Letter(letter, index+1, this.spinner.func(index+1)))
     }
 
     addLetter(letter, index=undefined) {    
@@ -64,7 +64,7 @@ class Base {
             }
             possibleLetter += letter
             if (Letter.isLetter(possibleLetter)) {
-                nextLetter = new Letter(possibleLetter, index, this.spinner(index))
+                nextLetter = new Letter(possibleLetter, index, this.spinner.func(index))
                 this.letters.splice(index, 0, nextLetter)
                 let insertedPlace = this.letters.indexOf(nextLetter)
                 for (let j = i; j < insertedPlace; j++)
@@ -103,7 +103,7 @@ class Base {
         if (typeof(to) === "undefined") to = this.letters.length
         if (from < 0) return
         for (let i = from; i < to; i++) {
-            this.letters[i].angle = this.spinner(i+1)
+            this.letters[i].angle = this.spinner.func(i+1)
         }
     }
 }
